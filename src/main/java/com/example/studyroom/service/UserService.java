@@ -23,24 +23,25 @@ public class UserService {
 		}
 
 		String token = "";
-		if (role.equals(Role.ADMIN)) {
-			token = "admin-token";
-		}
 
 		User newUser = new User(request.getEmail(), request.getName(), request.getPassword(), role, token);
 
-		if (role.equals(Role.USER)) {
-			newUser.setToken("user-token-" + newUser.getId());
+		User savedUser = userRepository.save(newUser);
+
+		if (role.equals(Role.ADMIN)) {
+			savedUser.setToken("admin-token");
+		} else {
+			savedUser.setToken("user-token-" + savedUser.getId());
 		}
 
-		userRepository.save(newUser);
+		userRepository.save(savedUser);
 	}
 
 	public String login(LoginRequest request) {
 		User user = userRepository.findByEmail(request.getEmail())
 			.orElseThrow(() -> new IllegalArgumentException("이메일을 찾을 수 없습니다."));
 
-		if (request.getPassword().equals(user.getPassword())) {
+		if (!request.getPassword().equals(user.getPassword())) {
 			throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
 		}
 
