@@ -37,10 +37,10 @@ public class UserController {
 		Role role = Role.ADMIN;
 		userService.signup(request, role);
 
-		return ResponseEntity.status(HttpStatus.CREATED).body("회원가입 성공");
+		return ResponseEntity.status(HttpStatus.CREATED).body("관리자 회원가입 성공");
 	}
 
-	@GetMapping
+	@PostMapping("/login")
 	public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
 		String token = userService.login(request);
 
