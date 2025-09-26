@@ -9,5 +9,5 @@ import com.example.studyroom.entity.Reservation;
 import com.example.studyroom.entity.Room;
 
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
-	List<Reservation> findByRoomAndEndAtAfterAndStartAtBefore(Room room, LocalDateTime startAt, LocalDateTime endAt);
+	boolean existsByRoomAndEndAtAfterAndStartAtBefore(Room room, LocalDateTime startAt, LocalDateTime endAt);
 }
