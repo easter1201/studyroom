@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/studyroom
+    username: postgres
+    password: 12345678
+  jpa:
+    hibernate:
+      ddl-auto: create
+      show-sql: true

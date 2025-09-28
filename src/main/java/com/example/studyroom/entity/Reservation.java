@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.Version;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -36,6 +36,9 @@ public class Reservation {
 
 	@Column(nullable = false)
 	private LocalDateTime endAt;
+
+	@Version
+	private Long version;
 
 	public Reservation(Room room, User user, LocalDateTime startAt, LocalDateTime endAt) {
 		this.room = room;
