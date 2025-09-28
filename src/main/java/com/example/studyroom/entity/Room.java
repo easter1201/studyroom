@@ -7,10 +7,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
 @Table(name = "rooms")
+@NoArgsConstructor
 public class Room {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,4 +24,10 @@ public class Room {
 	private String location;
 
 	private int capacity;
+
+	public Room(String name, String location, int capacity) {
+		this.name = name;
+		this.location = location;
+		this.capacity = capacity;
+	}
 }
